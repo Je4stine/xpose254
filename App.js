@@ -1,20 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import React,{useEffect, useState}from 'react';
+import { StyleSheet, Text, View, SafeAreaView,} from 'react-native';
 import GlobalStyles from './components/GlobalStyles';
-import Homepage from './components/screens/Home';
-import Profile1 from './components/screens/Profile1';
-import Profile2 from './components/screens/Profile2';
-import Profile3 from './components/screens/Profile3';
-import Profile4 from './components/screens/Profile4';
+import StackNavigator from './components/Navigation';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
+
+const [isFirstLaunch, setisFirstLaunch] = useState(null);
+
+  useEffect(() => {
+    AsyncStorage.getItem('alreadyLaunched').then(value=>{
+      if(value==null){
+        AsyncStorage.setItem('alreadyLaunched', 'true');
+        setisFirstLaunch(true);
+      } else{
+        setisFirstLaunch(false)
+      }
+    });
+  } , []);
+
+  if(isFirstLaunch==null){
+    return null;
+  } else if(isFirstLaunch==true){
+    console.log('first launch');
+  }else{
+    console.log('not first launch');
+  }
+
   return (
     <SafeAreaView style={GlobalStyles.droidSafeArea}>
-      <Homepage />
+      <StackNavigator/>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

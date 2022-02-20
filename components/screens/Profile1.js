@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity  } from 'react-native'
 import React from 'react'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
-export default function Profile1() {
+
+export default function Profile1({navigation}) {
   return (
     <>
     <View>
@@ -28,6 +30,16 @@ export default function Profile1() {
         />
         
     </View>
+     
+        <View style={{alignItems:'flex-end', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
+          <TouchableOpacity onPress={()=>navigation.navigate('Profile2')}>
+          <View style={{flexDirection:'row'}}> 
+            <Text style={{fontSize:20, marginRight:5}}>Next</Text>
+            <FontAwesome name="arrow-right" size={15} color="black" style={{ margin:5}}/>
+          </View>
+          </TouchableOpacity>
+        </View>
+      
     </>
   )
 }
