@@ -3,7 +3,6 @@ import React,{useEffect, useState}from 'react';
 import { StyleSheet, Text, View, SafeAreaView,} from 'react-native';
 import GlobalStyles from './components/GlobalStyles';
 import StackNavigator from './components/Navigation';
-import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {

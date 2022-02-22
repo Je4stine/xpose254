@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "952311732259",
+    "project_id": "xpose254-5a27d",
+    "storage_bucket": "xpose254-5a27d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952311732259:android:7b5b259dc6ea2d0eadf996",
+        "android_client_info": {
+          "package_name": "com.xpose254.xpose254"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952311732259-k5dajolf1cn4egehfqb21vabr7dqu4dm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh16wJrwFPNSIi9q7BvHxC1kfL142RRCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952311732259-k5dajolf1cn4egehfqb21vabr7dqu4dm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

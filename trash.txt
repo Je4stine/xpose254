@@ -1,0 +1,60 @@
+ // const [Name, setName] = useState('');
+  // const [Description, setDescription] = useState('');
+  // const [Contact, setContact] = useState('');
+
+  // const Refs = collection(db, "profile");
+
+  // const submitProfile = async () => {
+  //   await addDoc(Refs, { name: Name, description: Description, contact: Contact });
+  //   navigation.navigate('Profile2');
+  //   console.log({Name})
+  // };
+
+
+    return (
+    <>
+    <View>
+      <Text style={{fontSize: 30, fontWeight: 'bold', color:'red', marginTop:40, alignSelf: 'center'}}>Profile</Text>
+    </View>
+    <View style={{alignItems:'center', justifyContent:'center', marginTop: '30%'}}>  
+        <Text style={styles.profileText}>Your Username</Text>
+        <TextInput
+        style={styles.userNameInput}
+        placeholder="Enter your Username"
+        onChange={(event) => {
+          setName(event.target.value);
+        }}
+        />
+        <Text style={styles.profileText}>What do you expect from the Hookup?</Text>
+        <TextInput
+        style={styles.userNameInput}
+        placeholder="Write a description"
+        // value={Description}
+        onChange={(event) => {
+          setDescription(event.target.value);
+        }}
+        />
+        <Text style={styles.profileText}> Your Contact info(Optional)</Text>
+        <TextInput
+        style={styles.userNameInput}
+        placeholder="eg. Phone number"
+        // value={Contact}
+        onChange={(event) => {
+          setContact(event.target.value);
+        }}
+        />
+        
+    </View>
+     
+        <View style={{alignItems:'flex-end', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
+          <TouchableOpacity onPress={submitProfile}>
+          <View style={{flexDirection:'row'}}> 
+            <Text style={{fontSize:20, marginRight:5}}>Next</Text>
+            <FontAwesome name="arrow-right" size={10} color="black" style={{ margin:5}}/>
+          </View>
+          </TouchableOpacity>
+        </View>
+      
+    </>
+  )
+}

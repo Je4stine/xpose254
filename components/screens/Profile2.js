@@ -43,7 +43,7 @@ export default function Profile2({navigation}) {
           <TouchableOpacity onPress={()=>navigation.navigate('Profile3')}>
           <View style={{flexDirection:'row'}}> 
             <Text style={{fontSize:20, marginRight:5}}>Next</Text>
-            <FontAwesome name="arrow-right" size={15} color="black" style={{ margin:5}}/>
+            <FontAwesome name="arrow-right" size={10} color="black" style={{ margin:5}}/>
           </View>
           </TouchableOpacity>
         </View>
@@ -51,7 +51,7 @@ export default function Profile2({navigation}) {
         <View style={{alignItems:'flex-start', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
           <TouchableOpacity onPress={()=>navigation.push('Profile1')}>
           <View style={{flexDirection:'row'}}> 
-            <FontAwesome name="arrow-left" size={15} color="black" style={{ margin:5}}/>
+            <FontAwesome name="arrow-left" size={10} color="black" style={{ margin:5}}/>
             <Text style={{fontSize:20, marginLeft:5}}>Previous</Text>
           </View>
           </TouchableOpacity>
