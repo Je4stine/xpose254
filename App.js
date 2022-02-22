@@ -4,6 +4,9 @@ import { StyleSheet, Text, View, SafeAreaView,} from 'react-native';
 import GlobalStyles from './components/GlobalStyles';
 import StackNavigator from './components/Navigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Setting a timer for a long period of time'])
 
 export default function App() {
 

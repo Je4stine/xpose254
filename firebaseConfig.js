@@ -14,24 +14,24 @@ const firebaseConfig = {
     
 
   
-  // firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 
-  // const db = firebase.firestore();
+  const db = firebase.firestore();
 
-  // export default {
-  //   firebase,
-  //   db,
-  // };
+  export default {
+    firebase,
+    db,
+  };
 
-let app;
+// let app;
 
-if (firebase.apps.length === 0) {
-  app = firebase.initializeApp(firebaseConfig)
-} else {
-  app = firebase.app();
-}
+// if (firebase.apps.length === 0) {
+//   app = firebase.initializeApp(firebaseConfig)
+// } else {
+//   app = firebase.app();
+// }
 
-const db = app.firestore();
-const auth = firebase.auth();
+// const db = app.firestore();
+// const auth = firebase.auth();
 
-export { db, auth };
+// export { db, auth };

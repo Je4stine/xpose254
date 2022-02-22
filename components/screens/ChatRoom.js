@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { Avatar } from 'react-native-elements';
+import { Avatar,ListItem } from 'react-native-elements';
 
 const ChatRoom = () => {
 
