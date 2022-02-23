@@ -9,6 +9,7 @@ import Profile4 from './screens/Profile4';
 import Chat from './screens/Chat';
 import ChatRoom from './screens/ChatRoom';
 import User from './screens/User';
+import allProfiles from './ProfileContext';
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();

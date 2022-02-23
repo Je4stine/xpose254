@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button, Image, View, Platform, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { ProfileContext } from '../ProfileContext';
 
-export default function Profile4({navigation}) {
+
+export default function Profile4(props) {
+
+
+
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -32,6 +37,35 @@ export default function Profile4({navigation}) {
     }
   };
 
+
+  // const saveNewData = async (e)=>{
+  //   if (state.name=== ""){
+  //     alert("Please provide a name");
+  //   }else{
+
+  //     try{
+  //       await firebase.db.collection("profile").add({
+  //         name:state.name,
+  //         description:state.description,
+  //         contacts: state.contacts,
+  //         city:state.city,
+  //         area:state.area,
+  //         host: state.host,
+  //         gender1:state.gender1,
+  //         gender2:state.gender2,
+  //         age:state.age,
+  //         result:state.result
+  //       });
+
+  //       console.log(state);
+  //       props.navigation.navigate('Home');
+  //     }catch(error){
+  //       console.log(error)
+  //     }
+  //   }
+  // };
+
+
   return (
 
     <>
@@ -43,21 +77,21 @@ export default function Profile4({navigation}) {
       <TouchableOpacity onPress={pickImage}><View style={{backgroundColor:'blue', height:40, justifyContent:'center',alignItems:'center', borderRadius: 10, marginTop: 20}}><Text style={{color:'#fff', fontSize:13, fontWeight:'bold'}}> Choose from Libary </Text></View></TouchableOpacity>
     </View>
         <View style={{alignItems:'flex-start', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
-          <TouchableOpacity onPress={()=>navigation.push('Profile3')}>
+          <TouchableOpacity onPress={()=>props.navigation.push('Profile3')}>
           <View style={{flexDirection:'row'}}> 
             <FontAwesome name="arrow-left" size={10} color="black" style={{ margin:5}}/>
             <Text style={{fontSize:20, marginLeft:5}}>Previous</Text>
           </View>
           </TouchableOpacity>
         </View>
-
         <View style={{alignItems:'flex-end', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
-          <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('Home')}>
           <View style={{flexDirection:'row'}}> 
             <Text style={{fontSize:20, marginRight:5}}>Submit</Text>
           </View>
           </TouchableOpacity>
         </View>
+    
     </>
   );
 }

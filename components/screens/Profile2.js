@@ -2,47 +2,53 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import React, { useState } from 'react';
 import { RadioButton } from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import firebase from '../../firebaseConfig';
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
+// import firebase from '../../firebaseConfig';
+// import {
+//   collection,
+//   getDocs,
+//   addDoc,
+//   updateDoc,
+//   deleteDoc,
+//   doc,
+// } from "firebase/firestore";
+// import { ProfileProvider, useProfileContext } from '../ProfileContext';
+import ProfileContext  from '../ProfileContext';
 
 
 
 export default function Profile2(props) {
-  const initialState ={
-    city: "",
-    area : "",
-    host: "",
-  };
-  const [state, setState] = useState(initialState);
+  // const initialState ={
+  //   city: "",
+  //   area : "",
+  //   host: "",
+  // };
+  // const [state, setState] = useState(initialState);
 
-  const handleChangeText = (value, city)=>{
-    setState({...state, [city]:value});
-  };
+  // const handleChangeText = (value, city)=>{
+  //   setState({...state, [city]:value});
+  // };
 
-  const saveNewData = async ()=>{
-    if (state.city=== ""){
-      alert("Please enter a city");
-    }else{
+  
+  const {userData, setUserData} =useContext(ProfileContext);
 
-      try{
-        await firebase.db.collection("profile").add({
-          city:state.city,
-          area:state.area,
-          host: state.host
-        });
-        props.navigation.navigate('Profile3');
-      }catch(error){
-        console.log(error)
-      }
-    }
-  };
+  // const saveNewData = async ()=>{
+  //   if (state.city=== ""){
+  //     alert("Please enter a city,Location and Host status");
+  //   }else{
+
+  //     try{
+  //       // await firebase.db.collection("profile").add({
+  //       //   city:state.city,
+  //       //   area:state.area,
+  //       //   host: state.host
+  //       // });
+  //       console.log(state);
+  //       props.navigation.navigate('Profile3');
+  //     }catch(error){
+  //       console.log(error)
+  //     }
+  //   }
+  // };
 
 
 
@@ -56,17 +62,17 @@ export default function Profile2(props) {
         <TextInput
         style={styles.userNameInput}
         placeholder="Enter your City"
-        onChangeText={(value)=> handleChangeText(value, "city")}
+        onChangeText={(e)=> setUserData({...userData, "city": e.target.value})}
         />
         <Text style={styles.profileText}>Your area Location</Text>
         <TextInput
         style={styles.userNameInput}
         placeholder="Enter your area Location"
-        onChangeText={(value)=> handleChangeText(value, "area")}
+        onChangeText={(e)=> setUserData({...userData, "area": e.target.value})}
         />
         <Text style={styles.profileText}> Will you Host?</Text>
         
-        <RadioButton.Group onValueChange={(value)=> handleChangeText(value, "host")} >
+        <RadioButton.Group onValueChange={(e)=> setUserData({"host":e.target.value})} >
          <View style={{flexDirection:'row', marginTop:20}}>   
         <View>
         <Text>Yes</Text>
@@ -81,7 +87,7 @@ export default function Profile2(props) {
         
     </View>
     <View style={{alignItems:'flex-end', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
-          <TouchableOpacity onPress={() => saveNewData()}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('Profile3')}>
           <View style={{flexDirection:'row'}}> 
             <Text style={{fontSize:20, marginRight:5}}>Next</Text>
             <FontAwesome name="arrow-right" size={10} color="black" style={{ margin:5}}/>
@@ -114,3 +120,4 @@ const styles = StyleSheet.create({
         margin: 10,
     },
 });
+

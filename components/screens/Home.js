@@ -3,27 +3,27 @@ import React from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PostCard from '../PostCard';
 import BottomSheet from 'reanimated-bottom-sheet';
-import Animated from 'react-native-reanimated';
+// import Animated from 'react-native-reanimated';
 
 
 
 const Homepage = ({navigation}) => {
-  const renderInner = () => (
-    <View style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}></View>
-  );
+  // const renderInner = () => (
+  //   <View style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}></View>
+  // );
 
-  const renderHeader = () => (
-    <View style={styles.renderHeader}>
-      <View> style={styles.panelHeader}
-        <View style={styles.panelHandle}>
-        </View>
-      </View>
+  // const renderHeader = () => (
+  //   <View style={styles.renderHeader}>
+  //     <View> style={styles.panelHeader}
+  //       <View style={styles.panelHandle}>
+  //       </View>
+  //     </View>
 
-    </View>
-  );
+  //   </View>
+  // );
 
-  bs= React.createRef();
-  fall= new Animated.Value(1);
+  // bs= React.createRef();
+  // fall= new Animated.Value(1);
 
   return (
     <View style={styles.container}>
