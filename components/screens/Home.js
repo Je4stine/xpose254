@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import React,{useState} from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PostCard from '../PostCard';
@@ -52,13 +52,46 @@ const Homepage = ({navigation}) => {
           visible={visible}
           onBackButtonPress={toggleBottomNavigationView}
           onBackdropPress={toggleBottomNavigationView}>
-          <View style={{height:20,
+          <View style={{
               margin: 2,
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor: '#E0F7FA',
-              borderRadius:30}}>
-            <Text>Me</Text>
+              borderTopLeftRadius:30,
+              borderTopRightRadius:30,
+              }}>
+            <View style={{backgroundColor: '#fff',
+              width: '100%',
+              height: 250,
+              justifyContent: 'center',
+              borderTopLeftRadius:30,
+              borderTopRightRadius:30,
+              }}>
+              <Text style={{fontSize:20, alignSelf:'center'}}>UNLOCK THIS PERSON</Text>
+              <Text style={{fontSize:20, alignSelf:'center'}}>AND MAKE HOOK UP</Text>
+              <Text style={{fontSize:20, alignSelf:'center'}}>ARRANGEMENTS</Text>
+              <View style={{flexDirection: 'row',}}>
+                <Image source={require("../../assets/mpesa1.png")} style={{height:50, width:50, marginRight:20, marginLeft:10}}/>
+                <Text style={{fontSize:20, fontWeight:'bold', marginTop:10}}>Ksh 66</Text>
+              </View>
+
+              <View>
+                <TextInput
+                keyboardType='numeric'
+                placeholder='Phone'
+                style={{borderColor: 'black', borderBottomWidth: 1, margin: 10, width: '80%',alignSelf:'center'}}
+                />
+              </View>
+              <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
+                <View style={{height:30, width:100, backgroundColor:'green', borderRadius:35}}>
+                  <Text style={{color:'#fff', fontSize:15, fontWeight:'bold', textAlign:'center', marginTop:5}}>Submit</Text>
+                </View>
+                <View style={{height:30, width:100, backgroundColor:'green', borderRadius:35,}}>
+                  <Text style={{color:'#fff', fontSize:15, fontWeight:'bold', textAlign:'center', marginTop:5}}>Cancel</Text>
+                </View>
+              </View>
+            </View>
+
           </View>
         </BottomSheet>
 
@@ -94,4 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#00000040',
     marginBottom: 10,
   },
+  sheetText:{
+    alignItems:'center',
+  }
 });
