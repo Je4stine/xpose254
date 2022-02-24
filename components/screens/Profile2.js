@@ -1,10 +1,43 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
-import { RadioButton } from 'react-native-paper';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import React, { useState, useContext } from 'react';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { UserContext } from '../userContext';
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
-export default function Profile2({navigation}) {
-    const [value, setValue] = useState('first');
+
+const radio_props = [
+  {label: 'Yes', value:"Yes"},
+  {label: 'No', value:"No" }
+];
+
+export default function Profile2(props) {
+    const [value, setValue] = useState('Yes');
+    const {userState, setUserState}=useContext(UserContext);
+
+    
+    const handleChangeText = (value, name)=>{
+      setUserState({...userState, [name]:value});
+    };
+
+    const saveNewData = async ()=>{
+      if (userState.value=== ""){
+        alert("Please provide a name");
+      }else{
+  
+        try{
+          // await firebase.db.collection("profile").add({
+          //   name:state.name,
+          //   description:state.description,
+          //   contacts: state.contacts
+          // });
+          props.navigation.navigate('Profile3');
+          console.log(userState);
+        }catch(error){
+          console.log(error)
+        }
+      }
+    };
+
   return (
     <>
     <View>
@@ -15,32 +48,31 @@ export default function Profile2({navigation}) {
         <TextInput
         style={styles.userNameInput}
         placeholder="Enter your City"
-        // onChange={}
+        onChangeText={(value)=> handleChangeText(value, "city")}
         />
         <Text style={styles.profileText}>Your area Location</Text>
         <TextInput
         style={styles.userNameInput}
         placeholder="Enter your area Location"
-        // onChange={}
+        onChangeText={(value)=> handleChangeText(value, "area")}
         />
         <Text style={styles.profileText}> Will you Host?</Text>
         
-        <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value} >
-         <View style={{flexDirection:'row', marginTop:20}}>   
         <View>
-        <Text>Yes</Text>
-        <RadioButton value="first" />
-        </View>
-        <View>
-        <Text>No</Text>
-            <RadioButton value="second" />
-        </View>
-        </View>
-        </RadioButton.Group>
+        <RadioForm
+          radio_props={radio_props}
+          // initial={0}
+          formHorizontal={true}
+          labelHorizontal={false}
+          animation={true}
+          buttonSize={15}
+          onPress={(value)=> handleChangeText(value, "hostStatus")}
+        />
+      </View>
         
     </View>
     <View style={{alignItems:'flex-end', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
-          <TouchableOpacity onPress={()=>navigation.navigate('Profile3')}>
+          <TouchableOpacity onPress={() => saveNewData()}>
           <View style={{flexDirection:'row'}}> 
             <Text style={{fontSize:20, marginRight:5}}>Next</Text>
             <FontAwesome name="arrow-right" size={10} color="black" style={{ margin:5}}/>
@@ -49,7 +81,7 @@ export default function Profile2({navigation}) {
         </View>
 
         <View style={{alignItems:'flex-start', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
-          <TouchableOpacity onPress={()=>navigation.push('Profile1')}>
+          <TouchableOpacity onPress={()=>props.navigation.push('Profile1')}>
           <View style={{flexDirection:'row'}}> 
             <FontAwesome name="arrow-left" size={10} color="black" style={{ margin:5}}/>
             <Text style={{fontSize:20, marginLeft:5}}>Previous</Text>

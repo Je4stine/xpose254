@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity  } from 'react-native'
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firebase from '../../firebaseConfig';
@@ -11,33 +11,31 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
+import { UserContext } from '../userContext';
 
 
 export default function Profile1(props) {
-  const initialState ={
-    name: "",
-    description: "",
-    contacts: "",
-  };
+ 
 
-  const [state, setState] = useState(initialState);
+  const {userState, setUserState}=useContext(UserContext);
   
   const handleChangeText = (value, name)=>{
-    setState({...state, [name]:value});
+    setUserState({...userState, [name]:value});
   };
 
   const saveNewData = async ()=>{
-    if (state.name=== ""){
+    if (userState.value=== ""){
       alert("Please provide a name");
     }else{
 
       try{
-        await firebase.db.collection("profile").add({
-          name:state.name,
-          description:state.description,
-          contacts: state.contacts
-        });
+        // await firebase.db.collection("profile").add({
+        //   name:state.name,
+        //   description:state.description,
+        //   contacts: state.contacts
+        // });
         props.navigation.navigate('Profile2');
+        console.log(userState);
       }catch(error){
         console.log(error)
       }

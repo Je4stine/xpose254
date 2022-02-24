@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, SafeAreaView,} from 'react-native';
 import GlobalStyles from './components/GlobalStyles';
 import StackNavigator from './components/Navigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {UserProvider} from './components/userContext';
 
 export default function App() {
 
@@ -29,9 +30,11 @@ const [isFirstLaunch, setisFirstLaunch] = useState(null);
   }
 
   return (
+    <UserProvider>
     <SafeAreaView style={GlobalStyles.droidSafeArea}>
       <StackNavigator/>
     </SafeAreaView>
+    </UserProvider>
   );
 };
 
