@@ -98,7 +98,7 @@ export default function Profile3(props) {
         </View>
 
         <View style={{alignItems:'flex-start', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
-          <TouchableOpacity onPress={()=>navigation.push('Profile2')}>
+          <TouchableOpacity onPress={()=>props.navigation.push('Profile2')}>
           <View style={{flexDirection:'row'}}> 
             <FontAwesome name="arrow-left" size={10} color="black" style={{ margin:5}}/>
             <Text style={{fontSize:20, marginLeft:5}}>Previous</Text>

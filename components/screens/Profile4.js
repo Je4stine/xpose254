@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Image, View, Platform, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { UserContext } from '../userContext';
 
 export default function Profile4({navigation}) {
   const [image, setImage] = useState(null);
+  const {userState, setUserState}=useContext(UserContext);
+
 
   useEffect(() => {
     (async () => {
@@ -25,11 +28,11 @@ export default function Profile4({navigation}) {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       setImage(result.uri);
     }
+    setUserState({...userState, image:result.uri});
+    console.log(userState);
   };
 
   return (
