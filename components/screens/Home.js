@@ -1,41 +1,23 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import React from 'react';
+import React,{useState} from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PostCard from '../PostCard';
-import BottomSheet from 'reanimated-bottom-sheet';
-import Animated from 'react-native-reanimated';
+import { BottomSheet } from 'react-native-btr';
+
 
 
 
 const Homepage = ({navigation}) => {
-  const renderInner = () => (
-    <View style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}></View>
-  );
+  const [visible, setVisible] = useState(false);
 
-  const renderHeader = () => (
-    <View style={styles.renderHeader}>
-      <View> style={styles.panelHeader}
-        <View style={styles.panelHandle}>
-        </View>
-      </View>
-
-    </View>
-  );
-
-  bs= React.createRef();
-  fall= new Animated.Value(1);
-
+  const toggleBottomNavigationView = () => {
+   
+    setVisible(!visible);
+  };
+  
   return (
+    <>
     <View style={styles.container}>
-      {/* <BottomSheet
-      ref={this.bs}
-      snapPoints={[330, 0]}
-      renderContent={renderInner}
-      renderHeader={renderHeader}
-      initialSnap={1}
-      callbackNode={this.fall}
-      enabledGestureInteraction={true}
-      /> */}
          <View style={{height: 50, width:'100%', backgroundColor:'black', justifyContent:'space-between',alignItems:'center', flexDirection: 'row', marginBottom:2}}>
             <Text style={{color:'red', fontSize:30, fontWeight:'bold', marginLeft:20}}>xpose254</Text>
             <View style={{flexDirection: 'row'}}> 
@@ -50,7 +32,7 @@ const Homepage = ({navigation}) => {
         </View>
       <ScrollView >
         <View style={{flexDirection:'row', flexWrap:'wrap'}}>
-          <TouchableOpacity onPress={()=> this.bs.current.snapTo(0)}>
+          <TouchableOpacity onPress={toggleBottomNavigationView}>
           <PostCard/>
           </TouchableOpacity>
           <PostCard/>
@@ -65,6 +47,23 @@ const Homepage = ({navigation}) => {
         </View>
       </ScrollView>
     </View>
+
+    <BottomSheet
+          visible={visible}
+          onBackButtonPress={toggleBottomNavigationView}
+          onBackdropPress={toggleBottomNavigationView}>
+          <View style={{height:20,
+              margin: 2,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#E0F7FA',
+              borderRadius:30}}>
+            <Text>Me</Text>
+          </View>
+        </BottomSheet>
+
+
+    </>
   )
 };
 

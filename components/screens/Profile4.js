@@ -30,6 +30,8 @@ export default function Profile4({navigation}) {
 
     if (!result.cancelled) {
       setImage(result.uri);
+    } else{
+      alert("Please select an image");
     }
     setUserState({...userState, image:result.uri});
     console.log(userState);
