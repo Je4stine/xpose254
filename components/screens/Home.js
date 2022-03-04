@@ -1,14 +1,18 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PostCard from '../PostCard';
 import { BottomSheet } from 'react-native-btr';
+import { UserContext } from '../userContext';
+import { StatusBar } from 'expo-status-bar';
 
 
 
 
-const Homepage = ({navigation}) => {
+
+const Homepage = (props) => {
   const [visible, setVisible] = useState(false);
+  const {userState, setUserState}=useContext(UserContext);
 
   const toggleBottomNavigationView = () => {
    
@@ -18,14 +22,15 @@ const Homepage = ({navigation}) => {
   return (
     <>
     <View style={styles.container}>
-         <View style={{height: 50, width:'100%', backgroundColor:'black', justifyContent:'space-between',alignItems:'center', flexDirection: 'row', marginBottom:2}}>
-            <Text style={{color:'red', fontSize:30, fontWeight:'bold', marginLeft:20}}>xpose254</Text>
+    
+         <View style={{height: 50, width:'100%', backgroundColor:'purple', justifyContent:'space-between',alignItems:'center', flexDirection: 'row', marginBottom:2}}>
+            <Text style={{color:'#fff', fontSize:30, fontWeight:'bold', marginLeft:20}}>xpose254</Text>
             <View style={{flexDirection: 'row'}}> 
 
-                <TouchableOpacity onPress={()=>navigation.navigate('User')}> 
-                    <Image source={require('../../assets/user.png')} style={{height:35, width:35, margin:10}}/>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('User')}> 
+                    <Image source={{uri: userState.image}} style={{height:40, width:40, margin:10, borderRadius:20}}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate('ChatRoom')}>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('ChatRoom')}>
                     <FontAwesome name="commenting" size={30} color="#fff" style={{margin:10}}/>
                 </TouchableOpacity>
             </View>
@@ -83,12 +88,17 @@ const Homepage = ({navigation}) => {
                 />
               </View>
               <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
+                <TouchableOpacity>
                 <View style={{height:30, width:100, backgroundColor:'green', borderRadius:35}}>
                   <Text style={{color:'#fff', fontSize:15, fontWeight:'bold', textAlign:'center', marginTop:5}}>Submit</Text>
                 </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={toggleBottomNavigationView}>
                 <View style={{height:30, width:100, backgroundColor:'green', borderRadius:35,}}>
                   <Text style={{color:'#fff', fontSize:15, fontWeight:'bold', textAlign:'center', marginTop:5}}>Cancel</Text>
                 </View>
+                </TouchableOpacity>
               </View>
             </View>
 

@@ -31,7 +31,12 @@ const [isFirstLaunch, setisFirstLaunch] = useState(null);
 
   return (
     <UserProvider>
-    <SafeAreaView style={GlobalStyles.droidSafeArea}>
+    <SafeAreaView style={styles.container}>
+    <StatusBar
+        barStyle="light-content"
+        translucent={false}
+        backgroundColor="transparent"
+      />
       <StackNavigator/>
     </SafeAreaView>
     </UserProvider>
@@ -41,5 +46,6 @@ const [isFirstLaunch, setisFirstLaunch] = useState(null);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:"black"
   },
 });

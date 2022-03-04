@@ -61,7 +61,7 @@ export default function Profile2(props) {
         <View>
         <RadioForm
           radio_props={radio_props}
-          // initial={0}
+          initial={"Yes"}
           formHorizontal={true}
           labelHorizontal={false}
           animation={true}
@@ -81,7 +81,7 @@ export default function Profile2(props) {
         </View>
 
         <View style={{alignItems:'flex-start', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
-          <TouchableOpacity onPress={()=>props.navigation.push('Profile1')}>
+          <TouchableOpacity onPress={()=>props.navigation.goBack('Profile1')}>
           <View style={{flexDirection:'row'}}> 
             <FontAwesome name="arrow-left" size={10} color="black" style={{ margin:5}}/>
             <Text style={{fontSize:20, marginLeft:5}}>Previous</Text>

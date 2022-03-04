@@ -1,12 +1,22 @@
 {
   "expo": {
     "name": "xpose254",
+    "icon": "./assets/icon.png",
     "slug": "xpose254",
     "version": "1.0.0",
+    "android": {
+      "package": "com.xpose.xpose254",
+      "versionCode": 1
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "description": ""
   },
-  "name": "xpose254"
+  "name": "xpose254",
+  "splash": {
+    "image": "./assets/icon.png",
+    "resizeMode": "contain",
+    "backgroundColor": "purple"
+  }
 }

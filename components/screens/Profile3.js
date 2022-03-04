@@ -53,7 +53,7 @@ export default function Profile3(props) {
           <View>
           <RadioForm
             radio_props={radio_props}
-            // initial={0}
+            initial={"Male"}
             formHorizontal={true}
             labelHorizontal={false}
             animation={true}
@@ -69,12 +69,12 @@ export default function Profile3(props) {
         <View>
         <RadioForm
           radio_props={radio1_props}
-          // initial={0}
+          initial={"Male"}
           formHorizontal={true}
           labelHorizontal={false}
           animation={true}
           buttonSize={15}
-          onPress={(value)=> handleChangeText(value, "I am interested in")}
+          onPress={(value)=> handleChangeText(value, "interest")}
          />
         </View>
         </View>
@@ -98,7 +98,7 @@ export default function Profile3(props) {
         </View>
 
         <View style={{alignItems:'flex-start', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
-          <TouchableOpacity onPress={()=>props.navigation.push('Profile2')}>
+          <TouchableOpacity onPress={()=>props.navigation.goBack('Profile2')}>
           <View style={{flexDirection:'row'}}> 
             <FontAwesome name="arrow-left" size={10} color="black" style={{ margin:5}}/>
             <Text style={{fontSize:20, marginLeft:5}}>Previous</Text>
