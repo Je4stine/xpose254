@@ -1,12 +1,9 @@
-// import firebase from 'firebase/compat/app';
-// // import 'firebase/compat/auth';
-// import 'firebase/compat/firestore';
-// import 'firebase/compat/storage';
-// import { initializeApp } from 'firebase/app';
-// // import { getDatabase } from "firebase/database";
+import firebase from 'firebase/compat/app';
+// import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
 
-
-export default firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyA9cRa8mWBwWFENZoYXk5QXMsVE-14LvxQ",
     authDomain: "xpose254servers.firebaseapp.com",
     projectId: "xpose254servers",
@@ -16,18 +13,16 @@ export default firebaseConfig = {
     measurementId: "G-8PS09RF76V"
   };
     
-// let app;
 
-// app = firebase.initializeApp(firebaseConfig);
-// const db = app.firestore();
+  let app;
 
-// const app = initializeApp(firebaseConfig);
-
-// const db = app.firestore();
-// // const auth = firebase.auth();
-// // const storage = firebase.storage();
-// const database = getDatabase(app);
-
-
-
-// export { app, db};
+  if (firebase.apps.length === 0) {
+    app = firebase.initializeApp(firebaseConfig)
+  } else {
+    app = firebase.app();
+  }
+  
+  const db = app.firestore();
+ 
+  
+  export { db };

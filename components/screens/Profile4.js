@@ -3,27 +3,24 @@ import { Image, View, Platform, Text, StyleSheet, TouchableOpacity } from 'react
 import * as ImagePicker from 'expo-image-picker';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { UserContext } from '../userContext';
-
-
 import firebaseConfig from '../../firebaseConfig';
-import { initializeApp } from 'firebase/app'; 
-import { getStorage,ref, uploadBytes } from 'firebase/storage';
+// import { initializeApp } from 'firebase/app'; 
+import { getDownloadURL, getStorage,ref, uploadBytes,set } from 'firebase/storage';
+import {db} from '../../firebaseConfig';
+import {collection,add,serverTimestamp, addDoc} from 'firebase/firestore';
+import firebase from 'firebase/compat/app';
+import firestore from '@react-native-firebase/firestore';
 
-initializeApp(firebaseConfig);
-
-
+// initializeApp(firebaseConfig);
 
 
 export default function Profile4(props) {
 
   const [image, setImage] = useState(null);
   const {userState, setUserState}=useContext(UserContext);
-  // const ref= firebase.storage().ref('/profile/'+new(Date()).getTime());
-  // // const [uploading, setUploading] = useState(false);
-  // const [transferred, setTransferred] = useState(0);
-  // // const Refs = collection(db, "profile");
-  // const storage = getStorage();
-  // const storageRef = ref(storage);
+  const [imageUrl, setImageUrl] = useState();
+  
+
   
 
 
@@ -53,18 +50,64 @@ export default function Profile4(props) {
       const img = await fetch(result.uri);
       const bytes = await img.blob();
       await uploadBytes(ref_con, bytes);
-      // const upload = uploadBytes(ref, result.uri);
-      // setUserState({...userState, image:result.uri});
+      await getDownloadURL(ref_con).then(url => {
+        setImageUrl(url);
+        setUserState({...userState, image: url});
+        
+      })
+      
     } else{
       alert("Please select an image");
     }
   };
-
-
-
   
+  const saveNewData =async(e)=>{
+      e.preventDefault()
+      try {
+        await addDoc(collection(db, 'user'), {
+          name: userState.name,
+          image: userState.image,
+          description: userState.description,
+          contacts: userState.contacts,
+          city:userState.city,
+          area:userState.area,
+          hostStatus:userState.hostStatus,
+          age:userState.age,
+          gender:userState.gender,
+          interest:userState.interest,
+        })
+        props.navigation.navigate('Home')
+      } catch (err) {
+        alert(err)
+      }
+    // const userID = new Date()+xpose254;
+    // const saveRef = ref(db, 'user/'+ userID);
+    // if (setUserState.name=== ""){
+    //   alert("Please provide a name");
+    // }else{
 
- 
+    //   try{
+    //     saveRef.add({
+    //       name:setUserState.name,
+    //       description:setUserState.description,
+    //       contacts: setUserState.contacts,
+    //       city:setUserState.city,
+    //       area:setUserState.area,
+    //       hostStatus: setUserState.hostStatus,
+    //       gender:setUserState.gender,
+    //       gender2:setUserState.interest,
+    //       age:setUserState.age,
+    //       image:setUserState.image
+          
+    //     })
+
+    //     props.navigation.navigate('Home');
+    //   }catch(error){
+    //     console.log(error)
+    //   }
+    // }
+  };
+
   
 
   return (
@@ -86,7 +129,7 @@ export default function Profile4(props) {
         </View>
 
         <View style={{alignItems:'flex-end', marginRight:30, position:'absolute', bottom:10, width:'95%'}}>
-          <TouchableOpacity >
+          <TouchableOpacity onPress={saveNewData}>
           <View style={{flexDirection:'row'}}> 
             <Text style={{fontSize:20, marginRight:5}}>Submit</Text>
           </View>
