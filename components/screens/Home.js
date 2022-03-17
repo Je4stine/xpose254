@@ -1,23 +1,53 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
-import React,{useState, useContext} from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, TextInput, ScrollView } from 'react-native';
+import React,{useState, useContext, useEffect} from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PostCard from '../PostCard';
 import { BottomSheet } from 'react-native-btr';
 import { UserContext } from '../userContext';
 import { StatusBar } from 'expo-status-bar';
-
-
-
+import {collection, query, orderBy, onSnapshot} from "firebase/firestore";
+import {db} from '../../firebaseConfig';
 
 
 const Homepage = (props) => {
   const [visible, setVisible] = useState(false);
   const {userState, setUserState}=useContext(UserContext);
+  const [posts, setPosts] = useState([]);
 
   const toggleBottomNavigationView = () => {
-   
     setVisible(!visible);
   };
+
+  useEffect(() => {
+    const q = query(collection(db, 'user'), orderBy('created', 'desc'))
+    onSnapshot(q, (querySnapshot) => {
+      setPosts(querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        data: doc.data()
+      })))
+    })
+  },[])
+  // const PostCard=({item}) => {
+  //   return (
+  //     <View style={{height: 200, width: 150, borderWidth:0.5, borderRadius:10, margin:15, borderColor:'grey'}}>
+  //         <View>
+  //           <Image source={{uri: item.image}} style={{ height:150, width:150, resizeMode:'contain', borderTopLeftRadius:30, borderTopRightRadius:30}}/>
+  //         </View>
+  //         <View style={{flexDirection: 'row',  display:'flex',justifyContent:'space-between', position:'absolute', top:10, width:'100%'}}>
+  //               <Text style={{color:'red',marginLeft:5}}>{item.age}</Text>
+  //                 <View style={{backgroundColor:'green', width:10, height:10,borderRadius:5, marginRight:5}}>
+  //                 </View>
+  //         </View>
+  //         <View>
+  //           <Text style={{fontSize:15, marginLeft:10}}>{item.name}</Text>
+  //         </View>
+  //         <View style={{flexDirection:'row', justifyContent:'space-between', padding:2}}>
+  //           <Text style={{fontSize:18, fontWeight:'bold'}}> {item.city}</Text>
+  //           <Text style={{fontSize:18, color:'red', marginRight:5}}>Locked</Text>
+  //         </View>
+  //     </View>
+  //   )
+  // }; 
   
   return (
     <>
@@ -28,7 +58,7 @@ const Homepage = (props) => {
             <View style={{flexDirection: 'row'}}> 
 
                 <TouchableOpacity onPress={()=>props.navigation.navigate('User')}> 
-                    <Image source={{uri: userState.image}} style={{height:40, width:40, margin:10, borderRadius:20}}/>
+                    <Image source={{uri: userState.image } || require('../../assets/user.png')} style={{height:40, width:40, margin:10, borderRadius:20}}/>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>props.navigation.navigate('ChatRoom')}>
                     <FontAwesome name="commenting" size={30} color="#fff" style={{margin:10}}/>
@@ -44,13 +74,17 @@ const Homepage = (props) => {
           <PostCard/>
           <PostCard/>
           <PostCard/>
-          <PostCard/>
+          <PostCard/> 
           <PostCard/>
           <PostCard/>
           <PostCard/>
           <PostCard/>
         </View>
       </ScrollView>
+      {/* <FlatList
+      data={setPost}
+      renderItem={({item})=>{return<PostCard item={item}/>}}
+      keyExtractor={(item, index)}/> */}
     </View>
 
     <BottomSheet
@@ -104,7 +138,6 @@ const Homepage = (props) => {
 
           </View>
         </BottomSheet>
-
 
     </>
   )

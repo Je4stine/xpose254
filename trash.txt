@@ -111,3 +111,28 @@ export default function App() {
     </View>
   );
 }
+
+
+
+
+
+// const [isFirstLaunch, setisFirstLaunch] = useState(null);
+
+  // useEffect(() => {
+  //   AsyncStorage.getItem('alreadyLaunched').then(value=>{
+  //     if(value==null){
+  //       AsyncStorage.setItem('alreadyLaunched', 'true');
+  //       setisFirstLaunch(true);
+  //     } else{
+  //       setisFirstLaunch(false)
+  //     }
+  //   });
+  // } , []);
+
+  // if(isFirstLaunch==null){
+  //   return null;
+  // } else if(isFirstLaunch==true){
+  //   console.log('first launch');
+  // }else{
+  //   console.log('not first launch');
+  // }

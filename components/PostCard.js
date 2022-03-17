@@ -6,7 +6,7 @@ export default function PostCard() {
   return (
     <View style={{height: 200, width: 150, borderWidth:0.5, borderRadius:10, margin:15, borderColor:'grey'}}>
         <View>
-          <Image source={require('../assets/manson.jpg')} style={{ height:150, width:150, resizeMode:'contain', borderTopLeftRadius:30, borderTopRightRadius:30}}/>
+          <Image source={require('../assets/manson.jpg')} style={{ height:150, width:150, resizeMode:'contain', borderTopLeftRadius:10, borderTopRightRadius:10}}/>
         </View>
         <View style={{flexDirection: 'row',  display:'flex',justifyContent:'space-between', position:'absolute', top:10, width:'100%'}}>
               <Text style={{color:'red',marginLeft:5}}>22</Text>
@@ -22,4 +22,4 @@ export default function PostCard() {
         </View>
     </View>
   )
-};
+}; 

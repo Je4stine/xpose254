@@ -7,7 +7,7 @@ import firebaseConfig from '../../firebaseConfig';
 // import { initializeApp } from 'firebase/app'; 
 import { getDownloadURL, getStorage,ref, uploadBytes,set } from 'firebase/storage';
 import {db} from '../../firebaseConfig';
-import {collection,add,serverTimestamp, addDoc} from 'firebase/firestore';
+import {collection,add,serverTimestamp, addDoc, Timestamp} from 'firebase/firestore';
 import firebase from 'firebase/compat/app';
 import firestore from '@react-native-firebase/firestore';
 
@@ -75,37 +75,12 @@ export default function Profile4(props) {
           age:userState.age,
           gender:userState.gender,
           interest:userState.interest,
+          created:Timestamp.now()
         })
         props.navigation.navigate('Home')
       } catch (err) {
-        alert(err)
+        console.log(err)
       }
-    // const userID = new Date()+xpose254;
-    // const saveRef = ref(db, 'user/'+ userID);
-    // if (setUserState.name=== ""){
-    //   alert("Please provide a name");
-    // }else{
-
-    //   try{
-    //     saveRef.add({
-    //       name:setUserState.name,
-    //       description:setUserState.description,
-    //       contacts: setUserState.contacts,
-    //       city:setUserState.city,
-    //       area:setUserState.area,
-    //       hostStatus: setUserState.hostStatus,
-    //       gender:setUserState.gender,
-    //       gender2:setUserState.interest,
-    //       age:setUserState.age,
-    //       image:setUserState.image
-          
-    //     })
-
-    //     props.navigation.navigate('Home');
-    //   }catch(error){
-    //     console.log(error)
-    //   }
-    // }
   };
 
   
