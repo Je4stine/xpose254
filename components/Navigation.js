@@ -34,19 +34,28 @@ useEffect(() => {
         return null;
       } else if(isFirstLaunch==true){
         return(
-            <NavigationContainer>
-                <Stack.Navigator screenOptions={{headerShown: false}}>
-                    <Stack.Screen name="Profile1" component={Profile1} />
-                    <Stack.Screen name="Profile2" component={Profile2}/>
-                    <Stack.Screen name="Profile3" component={Profile3}/>
-                    <Stack.Screen name="Profile4" component={Profile4}/>
-                </Stack.Navigator>
-            </NavigationContainer>
+            // <NavigationContainer>
+            //     <Stack.Navigator screenOptions={{headerShown: false}}>
+            //         <Stack.Screen name="Profile1" component={Profile1} />
+            //         <Stack.Screen name="Profile2" component={Profile2}/>
+            //         <Stack.Screen name="Profile3" component={Profile3}/>
+            //         <Stack.Screen name="Profile4" component={Profile4}/>
+            //         <Stack.Screen name="Home" component={Homepage}/>
+            //         <Stack.Screen name="Chat" component={Chat}/>
+            //         <Stack.Screen name="ChatRoom" component={ChatRoom}/>
+            //         <Stack.Screen name="User" component={User}/>
+            //     </Stack.Navigator>
+            // </NavigationContainer>
+            console.log("First launch")
         )
       }else{
         return(
             <NavigationContainer>
                 <Stack.Navigator screenOptions={{headerShown: false}}>
+                    {/* <Stack.Screen name="Profile1" component={Profile1} />
+                    <Stack.Screen name="Profile2" component={Profile2}/>
+                    <Stack.Screen name="Profile3" component={Profile3}/>
+                    <Stack.Screen name="Profile4" component={Profile4}/> */}
                     <Stack.Screen name="Home" component={Homepage}/>
                     <Stack.Screen name="Chat" component={Chat}/>
                     <Stack.Screen name="ChatRoom" component={ChatRoom}/>

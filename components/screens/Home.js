@@ -25,34 +25,35 @@ const Homepage = (props) => {
         id: doc.id,
         data: doc.data()
       })))
+      console.log(setPosts);
     })
   },[])
-  // const PostCard=({item}) => {
+  // const PostCard=({post}) => {
   //   return (
   //     <View style={{height: 200, width: 150, borderWidth:0.5, borderRadius:10, margin:15, borderColor:'grey'}}>
   //         <View>
-  //           <Image source={{uri: item.image}} style={{ height:150, width:150, resizeMode:'contain', borderTopLeftRadius:30, borderTopRightRadius:30}}/>
+  //           <Image source={{uri: post.image}} style={{ height:150, width:150, resizeMode:'contain', borderTopLeftRadius:30, borderTopRightRadius:30}}/>
   //         </View>
   //         <View style={{flexDirection: 'row',  display:'flex',justifyContent:'space-between', position:'absolute', top:10, width:'100%'}}>
-  //               <Text style={{color:'red',marginLeft:5}}>{item.age}</Text>
+  //               <Text style={{color:'red',marginLeft:5}}>{post.age}</Text>
   //                 <View style={{backgroundColor:'green', width:10, height:10,borderRadius:5, marginRight:5}}>
   //                 </View>
   //         </View>
   //         <View>
-  //           <Text style={{fontSize:15, marginLeft:10}}>{item.name}</Text>
+  //           <Text style={{fontSize:15, marginLeft:10}}>{post.name}</Text>
   //         </View>
   //         <View style={{flexDirection:'row', justifyContent:'space-between', padding:2}}>
-  //           <Text style={{fontSize:18, fontWeight:'bold'}}> {item.city}</Text>
+  //           <Text style={{fontSize:18, fontWeight:'bold'}}> {post.city}</Text>
   //           <Text style={{fontSize:18, color:'red', marginRight:5}}>Locked</Text>
   //         </View>
   //     </View>
   //   )
   // }; 
+ 
   
   return (
     <>
     <View style={styles.container}>
-    
          <View style={{height: 50, width:'100%', backgroundColor:'purple', justifyContent:'space-between',alignItems:'center', flexDirection: 'row', marginBottom:2}}>
             <Text style={{color:'#fff', fontSize:30, fontWeight:'bold', marginLeft:20}}>xpose254</Text>
             <View style={{flexDirection: 'row'}}> 
@@ -65,26 +66,35 @@ const Homepage = (props) => {
                 </TouchableOpacity>
             </View>
         </View>
-      <ScrollView >
+    
+      {/* <ScrollView >
         <View style={{flexDirection:'row', flexWrap:'wrap'}}>
           <TouchableOpacity onPress={toggleBottomNavigationView}>
           <PostCard/>
           </TouchableOpacity>
-          <PostCard/>
-          <PostCard/>
-          <PostCard/>
-          <PostCard/>
-          <PostCard/> 
-          <PostCard/>
-          <PostCard/>
-          <PostCard/>
-          <PostCard/>
         </View>
-      </ScrollView>
-      {/* <FlatList
-      data={setPost}
-      renderItem={({item})=>{return<PostCard item={item}/>}}
-      keyExtractor={(item, index)}/> */}
+      </ScrollView> */}
+     {/* <FlatList
+      data={setPosts}
+      renderItem={({item})=>{return <PostCard/> }}
+      keyExtractor={(item,index)=> index.toString()}/> */}
+    <ScrollView>
+    <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+      {
+        posts.map((post)=>(
+         <PostCard
+         id={post.id}
+         key={post.id}
+         photo={post.data.image}
+         userName={post.data.name}
+         city={post.data.city}
+         />
+        ))
+      }
+    </View>
+    </ScrollView>
+
+
     </View>
 
     <BottomSheet
