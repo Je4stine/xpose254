@@ -74,26 +74,37 @@ const Homepage = (props) => {
           </TouchableOpacity>
         </View>
       </ScrollView> */}
-     {/* <FlatList
-      data={setPosts}
-      renderItem={({item})=>{return <PostCard/> }}
-      keyExtractor={(item,index)=> index.toString()}/> */}
+     
+     
     <ScrollView>
     <View style={{flexDirection:'row', flexWrap:'wrap'}}>
       {
-        posts.map((post)=>(
-         <PostCard
-         id={post.id}
-         key={post.id}
-         photo={post.data.image}
-         userName={post.data.name}
-         city={post.data.city}
-         />
-        ))
+        posts.map((post)=>{
+          return (
+            <View key={post.id} style={{height: 200, width: 150, borderWidth:0.5, borderRadius:10, margin:15, borderColor:'grey'}}>
+              <TouchableOpacity onPress={toggleBottomNavigationView}>
+                  <View>
+                    <Image source={{uri:post.data.image}} style={{ height:150, width:150, resizeMode:'contain', borderTopLeftRadius:30, borderTopRightRadius:30}}/>
+                  </View>
+                  <View style={{flexDirection: 'row',  display:'flex',justifyContent:'space-between', position:'absolute', top:10, width:'100%'}}>
+                        <Text style={{color:'red',marginLeft:5}}>{post.data.age}</Text>
+                          <View style={{backgroundColor:'green', width:10, height:10,borderRadius:5, marginRight:5}}>
+                          </View>
+                  </View>
+                  <View>
+                    <Text style={{fontSize:15, marginLeft:10}}>{post.data.name}</Text>
+                  </View>
+                  <View style={{flexDirection:'row', justifyContent:'space-between', padding:2}}>
+                    <Text style={{fontSize:18, fontWeight:'bold'}}> {post.data.city}</Text>
+                    <Text style={{fontSize:18, color:'red', marginRight:5}}>Locked</Text>
+                  </View>
+                  </TouchableOpacity>
+              </View>
+          )
+        })
       }
     </View>
     </ScrollView>
-
 
     </View>
 
